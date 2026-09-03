@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archit Jain | Tech Lead & Senior Software Engineer</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* CSS Variables & Theme definitions */
+        :root[data-theme="dark"] {
+            --bg-base: #060913;
+            /* Extremely deep slate for premium feel */
+            --bg-surface: rgba(17, 24, 39, 0.4);
+            --bg-elevated: rgba(31, 41, 55, 0.6);
+            --primary: #06b6d4;
+            /* Cyan */
+            --primary-gradient: linear-gradient(135deg, #0ea5e9, #10b981);
+            /* Blue to Emerald */
+            --primary-glow: rgba(14, 165, 233, 0.25);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --nav-bg: rgba(6, 9, 19, 0.7);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-blur: 16px;
+        }
+
+        :root[data-theme="light"] {
+            --bg-base: #f4f6f8;
+            --bg-surface: rgba(255, 255, 255, 0.7);
+            --bg-elevated: rgba(255, 255, 255, 0.9);
+            --primary: #0284c7;
+            --primary-gradient: linear-gradient(135deg, #0284c7, #059669);
+            --primary-glow: rgba(2, 132, 199, 0.15);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --nav-bg: rgba(244, 246, 248, 0.7);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-blur: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Subtle Background Texture / Grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Gradient Text Utility */
+        .text-gradient {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Highlight Metrics Utility */
+        .metric {
+            color: var(--primary);
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+            background: var(--primary-glow);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: var(--transition);
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+            background-color: var(--bg-elevated);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Container & Layout */
+        section {
+            padding: 7rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 5rem;
+        }
+
+        .hero p.greeting {
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            margin: 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--text-muted);
+            margin: 1.5rem 0 2rem 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p.summary {
+            max-width: 750px;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-gradient);
+            color: white !important;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--primary-glow);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-surface);
+            backdrop-filter: blur(var(--glass-blur));
+            color: var(--text-main);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--bg-elevated);
+        }
+
+        /* Bento Grid & Glassmorphism Cards */
+        .grid-bento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Mouse Tracking Glow Effect */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, 0);
+            left: var(--mouse-x, 0);
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card>* {
+            z-index: 1;
+            position: relative;
+        }
+
+        .card h3 {
+            color: var(--text-main);
+            margin-top: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tag {
+            background: var(--bg-elevated);
+            color: var(--text-main);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .tag.premium {
+            border-color: var(--primary);
+            background: rgba(6, 182, 212, 0.05);
+            color: var(--primary);
+            font-weight: 600;
+            animation: pulse-border 2.5s infinite alternate;
+        }
+
+        @keyframes pulse-border {
+            0% {
+                border-color: rgba(6, 182, 212, 0.3);
+                box-shadow: 0 0 0 rgba(6, 182, 212, 0);
+            }
+
+            100% {
+                border-color: rgba(6, 182, 212, 1);
+                box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .tag:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3.5rem;
+            background: var(--bg-surface);
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover {
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 3px solid var(--primary);
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover::before {
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .time-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .time-date {
+            color: var(--primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            background: var(--primary-glow);
+            padding: 0.2rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .time-title {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--text-main);
+            font-weight: 800;
+        }
+
+        .time-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-top: 0.2rem;
+        }
+
+        .time-focus {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-item ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-item li::marker {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active,
+        .reveal-left.active {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-container .section-header::after {
+            left: 25%;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .contact-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--bg-surface);
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .contact-links a:hover {
+            border-color: transparent;
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--primary-glow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 5%;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item::before {
+                left: -2px;
+                top: 2.5rem;
+            }
+
+            .timeline {
+                padding-left: 35px;
+            }
+
+            .timeline-item {
+                padding: 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="logo">Archit<span>Jain.</span></a>
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="#about" class="active">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects & Internships</a>
+                <a href="#education">Education & Certs</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark/Light Mode">
+                <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero reveal" id="about">
+        <p class="greeting reveal delay-100">Hello, I am</p>
+        <h1 class="reveal delay-200">Archit Jain.</h1>
+        <h2 class="reveal delay-300">Tech Lead & <span class="text-gradient">Distributed Systems</span> Architect.</h2>
+        <p class="summary reveal delay-400">
+            Visionary Engineering Lead with 5+ years of experience architecting, decoupling, and optimizing hyper-scale
+            distributed microservices. Adept at bridging complex systems engineering with business P&L, executing
+            fault-tolerant ledger migrations, and piloting next-generation Agentic AI frameworks to automate
+            mission-critical workflows.
+        </p>
+        <div class="hero-cta reveal delay-400">
+            <a href="#experience" class="btn-primary">View Experience</a>
+            <a href="Archit_Jain_Resume.pdf" target="_blank" class="btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Resume
+            </a>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-header reveal">Technical Expertise</h2>
+        <div class="grid-bento">
+            <div class="card reveal delay-100">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg> Architecture & Design</h3>
+                <div class="tags-container">
+                    <span class="tag premium">Distributed Microservices</span>
+                    <span class="tag premium">High-Scale System Design</span>
+                    <span class="tag premium">Event-Driven Architecture</span>
+                    <span class="tag premium">Fault Tolerance & HA</span>
+                    <span class="tag premium">Monolith Decoupling</span>
+                    <span class="tag">SOA</span>
+                    <span class="tag">System Trade-off Analysis</span>
+                    <span class="tag">Low-Level Design (LLD)</span>
+                    <span class="tag">API Gateway & Load Balancing</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-200">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg> Languages & Frameworks</h3>
+                <div class="tags-container">
+                    <span class="tag premium">TypeScript</span>
+                    <span class="tag premium">JavaScript (ES6+)</span>
+                    <span class="tag premium">Node.js</span>
+                    <span class="tag premium">React.js</span>
+                    <span class="tag premium">Java</span>
+                    <span class="tag">Express.js</span>
+                    <span class="tag">RESTful APIs & GraphQL</span>
+                    <span class="tag">HTML5 / CSS3</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-300">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg> Databases & Messaging</h3>
+                <div class="tags-container">
+                    <span class="tag premium">MySQL / MS SQL</span>
+                    <span class="tag premium">MongoDB (Document Modeling)</span>
+                    <span class="tag premium">Redis (Distributed Caching)</span>
+                    <span class="tag premium">Redlock</span>
+                    <span class="tag">Kafka / RabbitMQ</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">ElasticSearch</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-400">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg> Cloud & DevOps</h3>
+                <div class="tags-container">
+                    <span class="tag premium">AWS (SQS, ECS, EC2, S3, Lambda)</span>
+                    <span class="tag premium">Datadog / Observability</span>
+                    <span class="tag">CI/CD Pipelines</span>
+                    <span class="tag">Bitbucket Pipelines & Jenkins</span>
+                    <span class="tag">Git / GitHub</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Newrelic</span>
+                    <span class="tag">Postman</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-100">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg> AI Engineering</h3>
+                <div class="tags-container">
+                    <span class="tag premium">LLM Orchestration</span>
+                    <span class="tag premium">Agentic Workflows</span>
+                    <span class="tag premium">RAG (Retrieval-Augmented Gen)</span>
+                    <span class="tag">LangChain / CrewAI</span>
+                    <span class="tag">Vector Databases</span>
+                    <span class="tag">OpenAI GPT / Claude APIs</span>
+                    <span class="tag">Context-Embedded Automation</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-200">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg> Leadership & Governance</h3>
+                <div class="tags-container">
+                    <span class="tag premium">Pod Mentoring (10+ Engineers)</span>
+                    <span class="tag premium">System Architecture Reviews</span>
+                    <span class="tag premium">Performance Tuning</span>
+                    <span class="tag premium">Technical Governance</span>
+                    <span class="tag premium">System Optimization</span>
+                    <span class="tag">Cross-Functional Leadership</span>
+                    <span class="tag">Code Quality Standards</span>
+                    <span class="tag">TDD / Agile</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-header reveal">Professional Experience</h2>
+        <div class="timeline">
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Tech Lead</h3>
+                        <p class="time-subtitle">CarDekho Group (Rupyy) | Gurugram, India</p>
+                        <span class="time-focus">Scale: B2B & B2C FinTech Ecosystems</span>
+                    </div>
+                    <span class="time-date">04/2026 - Present</span>
+                </div>
+                <ul>
+                    <li><strong>Engineering Leadership & Delivery:</strong> Spearhead a cross-functional pod of 10+
+                        developers and QA engineers driving continuous platform delivery for core high-traffic fintech
+                        systems.</li>
+                    <li><strong>Technical Vision & Governance:</strong> Formulated architectural layouts, evaluated
+                        high-concurrency design trade-offs, and introduced microservices code quality patterns, reducing
+                        production escalations by <span class="metric">25%</span> and boosting resilience.</li>
+                    <li><strong>AI Innovation & Workflow Automation:</strong> Architected a centralized payment portal
+                        utilizing OpenAI's GPT and Claude APIs to automate complex loan cash flow reconciliations and
+                        dynamically calculate partner revenue disbursements.</li>
+                    <li><strong>Infrastructure & Cost Optimization:</strong> Spearheaded infrastructure rightsizing
+                        across AWS ECS clusters, AWS Lambdas, and Redis nodes, slashing monthly cloud expenditure by
+                        <span class="metric">18%</span> without compromising throughput.
+                    </li>
+                    <li><strong>Operational Excellence:</strong> Accelerated development lifecycles by structuring code
+                        review standards and agile sprint mechanics, driving a <span class="metric">15%</span>
+                        efficiency gain and cutting time-to-market by <span class="metric">20%</span>.</li>
+                    <li><strong>System Architecture & LLD:</strong> Lead design reviews for high-concurrency
+                        microservices, ensuring performant event-loops, data encryption, and robust third-party B2B
+                        banking API integrations.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Software Development Engineer III</h3>
+                        <p class="time-subtitle">CarDekho Group (Rupyy) | Gurugram, India</p>
+                        <span class="time-focus">Focus: Microservices Transformation & System Reliability</span>
+                    </div>
+                    <span class="time-date">10/2024 - 03/2026</span>
+                </div>
+                <ul>
+                    <li><strong>Monolith Decoupling:</strong> Architected the migration of a high-dependency legacy
+                        'Unified Journey' monolithic platform into modern, clean-bounded isolated microservices for NBFC
+                        and Marketplace workflows.</li>
+                    <li><strong>Data Migration & Integrity:</strong> Successfully led a <span
+                            class="metric">zero-downtime</span> horizontal data migration of 3+ years of encrypted
+                        business-critical lead records, preserving 100% transactional data integrity.</li>
+                    <li><strong>Deep-Dive Performance Tuning:</strong> Resolved critical memory leaks and unoptimized
+                        database queries across system boundaries, reducing aggregate server overhead and improving API
+                        response times by <span class="metric">40-50%</span>.</li>
+                    <li><strong>Observability Engineering:</strong> Institutionalized proactive debugging, application
+                        metrics tracing, and real-time alerting strategies that systematically cut production downtime
+                        incidents by <span class="metric">30%</span>.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Software Development Engineer II</h3>
+                        <p class="time-subtitle">CarDekho Group (Rupyy) | Gurugram, India</p>
+                        <span class="time-focus">Focus: High-Volume Transactions & Scaling</span>
+                    </div>
+                    <span class="time-date">06/2023 - 09/2024</span>
+                </div>
+                <ul>
+                    <li><strong>Revenue & Business Growth:</strong> Scaled and launched net-new credit financing
+                        verticals (new cars, two-wheelers, refinancing), processing high-volume transactions that
+                        generated over <span class="metric">INR 100 Crore+</span> in new business revenue.</li>
+                    <li><strong>Asynchronous Infrastructure:</strong> Engineered resilient, asynchronous onboarding and
+                        loan disbursement sub-systems leveraging AWS SQS event patterns to guarantee high availability
+                        and fault isolation.</li>
+                    <li><strong>Automation & DevOps:</strong> Integrated automated continuous testing profiles via
+                        Bitbucket Pipelines and Docker, streamlining code validation cycles and upgrading overall
+                        platform deployment frequency.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Software Development Engineer I</h3>
+                        <p class="time-subtitle">CarDekho Group (Rupyy) | Gurugram, India</p>
+                        <span class="time-focus">Focus: Core User Flows & Components</span>
+                    </div>
+                    <span class="time-date">11/2022 - 05/2023</span>
+                </div>
+                <ul>
+                    <li><strong>Core Journey Engineering:</strong> Programmed data-driven customer onboarding and
+                        automated payout journeys, directly optimizing customer data conversion metrics.</li>
+                    <li><strong>UI Standardization:</strong> Engineered and published shared frontend React.js component
+                        libraries, standardizing internal design patterns and decreasing downstream UI development
+                        efforts by <span class="metric">25%</span>.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Software Developer</h3>
+                        <p class="time-subtitle">India Today Group (Aaj Tak / Lallantop) | Noida, India</p>
+                        <span class="time-focus">Focus: Hyper-Scale Streaming & Media Platforms</span>
+                    </div>
+                    <span class="time-date">12/2021 - 11/2022</span>
+                </div>
+                <ul>
+                    <li><strong>Hyper-Scale Ingestion:</strong> Architected low-latency backend systems for live
+                        Election Day Results calculation, managing massive real-time traffic spikes smoothly across 6
+                        high-traffic YouTube channels for millions of active users.</li>
+                    <li><strong>Distributed Caching:</strong> Formulated multi-node Redis caching strategies above core
+                        endpoints for the Lallantop platform, accelerating throughput by <span
+                            class="metric">10x-15x</span>.</li>
+                    <li><strong>Database Modernization:</strong> Executed a complex database translation migrating the
+                        proprietary CMS backend from MySQL instances to flexible document schemas on MongoDB to resolve
+                        query locking bottlenecks.</li>
+                    <li><strong>Full-Stack CMS Features:</strong> Programmed real-time collaborative features in the
+                        MERN ecosystem including WebSocket-driven takeover rights and an independent Audio Podcast
+                        platform boosting audience engagement by <span class="metric">30%</span>.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Software Engineer</h3>
+                        <p class="time-subtitle">Newgen Software Technologies Ltd. | Noida, India</p>
+                        <span class="time-focus">Focus: Enterprise Banking Architecture</span>
+                    </div>
+                    <span class="time-date">03/2021 - 12/2021</span>
+                </div>
+                <ul>
+                    <li><strong>Enterprise Workflows:</strong> Designed robust billing management frameworks and secure
+                        transaction document workflows for a major US financial institution (Wilson Bank Project) using
+                        Java, JavaScript, and MS SQL.</li>
+                    <li><strong>Greenfield Fee Module:</strong> Engineered a custom fee management sub-system from
+                        scratch, ensuring strict enterprise security rules governed all loan account activities.</li>
+                    <li><strong>Stack Modernization:</strong> Designed high-performance SQL Stored Procedures for safe
+                        transactional operations, and re-architected legacy account opening modules by porting codebases
+                        to Angular 9, Java, and MS SQL.</li>
+                    <li><strong>Rapid Advancement:</strong> Earned a fast-track promotion from Trainee to full-time
+                        Software Engineer within 4 months based on exceptional technical execution.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-header reveal">Architecture & Projects</h2>
+        <div class="grid-bento">
+            <div class="card reveal delay-100" style="grid-column: 1 / -1;">
+                <span class="time-date" style="display:inline-block; margin-bottom: 0.5rem; width: fit-content;">Case
+                    Study</span>
+                <h3>Monolith to Microservices Decoupling (CarDekho)</h3>
+                <p style="color: var(--text-muted); line-height: 1.8;">
+                    Architected the horizontal decoupling of a highly coupled 'Unified Journey' monolith into clean,
+                    domain-driven microservices. Migrated 3+ years of encrypted lead records with <span
+                        class="metric">zero downtime</span>, and reduced aggregate API response times by <span
+                        class="metric">40-50%</span> via extensive DB and Redis optimization.
+                </p>
+                <div class="tags-container" style="margin-top: auto; padding-top: 1rem;">
+                    <span class="tag premium">System Architecture</span>
+                    <span class="tag premium">Data Migration</span>
+                    <span class="tag">Microservices</span>
+                    <span class="tag">Redis</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-200">
+                <span class="time-date"
+                    style="display:inline-block; margin-bottom: 0.5rem; width: fit-content;">Community</span>
+                <h3>Tech Publications & Open Source</h3>
+                <p style="color: var(--text-muted);">Actively exploring and documenting distributed system design
+                    patterns, modern frontend architecture, and robust AI orchestration workflows.</p>
+                <div class="tags-container" style="margin-top: auto; padding-top: 1rem;">
+                    <span class="tag">System Design</span>
+                    <span class="tag">AI Engineering</span>
+                </div>
+                <a href="https://github.com/aj-cody" target="_blank"
+                    style="margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; text-decoration: none;">
+                    View GitHub Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="card reveal delay-300">
+                <span class="time-date" style="display:inline-block; margin-bottom: 0.5rem; width: fit-content;">2019 -
+                    2020</span>
+                <h3>Early Career & Internships</h3>
+                <p style="color: var(--text-muted);">Completed foundational engineering internships focusing on frontend
+                    optimization (ReactJS, Android UI/UX) and enterprise tooling across <b>ABB India</b>, <b>BSES</b>,
+                    and <b>Internity Foundation</b>.</p>
+                <div class="tags-container" style="margin-top: auto; padding-top: 1rem;">
+                    <span class="tag">React.js</span>
+                    <span class="tag">Android</span>
+                    <span class="tag">Web Dev</span>
+                </div>
+            </div>
+
+            <div class="card reveal delay-400">
+                <span class="time-date"
+                    style="display:inline-block; margin-bottom: 0.5rem; width: fit-content;">Academic Project</span>
+                <h3>Speech-to-Text Analytics</h3>
+                <p style="color: var(--text-muted);">Programmed a comprehensive web portal capable of translating
+                    real-time streaming audio records into structured, actionable diagnostic textual pipelines.</p>
+                <div class="tags-container" style="margin-top: auto; padding-top: 1rem;">
+                    <span class="tag">Audio Processing</span>
+                    <span class="tag">Web Architecture</span>
+                </div>
+                <a href="#"
+                    style="margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-weight: 600; text-decoration: none;">
+                    Source Code <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-header reveal">Education</h2>
+        <div class="timeline">
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Bachelor of Technology in Computer Science</h3>
+                        <p class="time-subtitle">Guru Gobind Singh Indraprastha University, New Delhi</p>
+                        <p style="color: var(--primary); font-weight: 700; font-size: 1.1rem; margin-top: 0.5rem;">CGPA:
+                            8.98</p>
+                    </div>
+                    <span class="time-date">Aug 2017 - Jun 2021</span>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Senior Secondary (12th Grade)</h3>
+                        <p class="time-subtitle">Lovely Public Sr. Sec. School, P. D. Vihar, Delhi</p>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem;">Physics, Chemistry, Mathematics (PCM) +
+                            Computer Science (CS)</p>
+                        <p style="color: var(--primary); font-weight: 700; font-size: 1.1rem; margin-top: 0.2rem;">
+                            Score: 87.6%</p>
+                    </div>
+                    <span class="time-date">2017</span>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal-left">
+                <div class="time-header">
+                    <div>
+                        <h3 class="time-title">Secondary Education (10th Grade)</h3>
+                        <p class="time-subtitle">Lovely Public Sr. Sec. School, P. D. Vihar, Delhi</p>
+                        <p style="color: var(--primary); font-weight: 700; font-size: 1.1rem; margin-top: 0.5rem;">CGPA:
+                            10.0</p>
+                    </div>
+                    <span class="time-date">2015</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-header reveal" style="margin-top: 4rem;">Certifications & Achievements</h2>
+        <div class="grid-bento">
+            <div class="card reveal delay-100">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg> Certifications</h3>
+                <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                    <li><strong style="color: var(--text-main);">Data Structures in JAVA</strong> - Coding Ninjas</li>
+                </ul>
+            </div>
+            <div class="card reveal delay-200">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                    </svg> Awards & Milestones</h3>
+                <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                    <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text-main);">Innovation
+                            Awards:</strong> 1st Runner Up, InnovateX Hackathon - CarDekho Group (Apr 2025)</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text-main);">Corporate
+                            Recognition:</strong> Extra Miles Excellence Recognition - CarDekho Group (May 2023)</li>
+                    <li><strong style="color: var(--text-main);">Academic Milestones:</strong> Best Intern Award -
+                        Internity Foundation (Jul 2020)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="margin-bottom: 3rem;">
+        <div class="contact-container reveal">
+            <h2 class="section-header">Get In Touch</h2>
+            <p style="color: var(--text-muted); font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                Targeting Staff / Tech Lead Engineering roles. Let's discuss system architecture, massive scale
+                infrastructure, and building robust engineering cultures.
+            </p>
+
+            <div
+                style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--text-main); margin-bottom: 2.5rem; font-family: 'Fira Code', monospace; font-size: 0.95rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                New Delhi, Delhi, India
+            </div>
+
+            <div class="contact-links">
+                <a href="mailto:archit.abj@gmail.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Email
+                </a>
+                <a href="tel:+919971577261">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    Call Me
+                </a>
+                <a href="https://linkedin.com/in/aj-archit-jain" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://aj-cody.github.io/architjain" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Designed & Built by Archit Jain.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem;">&copy; 2026 All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        } else if (!prefersDark) {
+            htmlElement.setAttribute('data-theme', 'light');
+            updateThemeIcon('light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+            } else {
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+            }
+        }
+
+        // Active Navigation Link Update on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mouse Tracking Glow for Cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+
+                if (target) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for Scroll-Reveal Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
