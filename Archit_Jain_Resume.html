@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q2EYSPVSH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8Q2EYSPVSH');
+    </script>
+    <meta charset="UTF-8">
+    <title>Archit Jain - Resume</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 10mm 12mm 10mm 12mm;
+
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-size: 8pt;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                color: #718096;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #2d3748;
+            background-color: #ffffff;
+            font-size: 8.6pt;
+            line-height: 1.34;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Header Section */
+        .header {
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 5px;
+            margin-bottom: 7px;
+        }
+
+        .name {
+            font-size: 18.5pt;
+            font-weight: 700;
+            color: #1a365d;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin: 0 0 2px 0;
+        }
+
+        .title {
+            font-size: 10.2pt;
+            font-weight: 600;
+            color: #2b6cb0;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-bar {
+            font-size: 8.2pt;
+            color: #4a5568;
+            margin-bottom: 0;
+        }
+
+        .contact-item {
+            display: inline;
+        }
+
+        .contact-item:not(:last-child)::after {
+            content: " • ";
+            color: #cbd5e0;
+            font-weight: bold;
+            padding: 0 3px;
+        }
+
+        .contact-item a {
+            color: #2b6cb0;
+            text-decoration: none;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 7px;
+        }
+
+        .section-title {
+            font-size: 9.8pt;
+            font-weight: 700;
+            color: #1a365d;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2px;
+            margin: 0 0 4px 0;
+        }
+
+        /* Profile / Summary */
+        .summary-text {
+            text-align: justify;
+            margin: 0;
+            font-size: 8.6pt;
+            color: #2d3748;
+        }
+
+        /* Skills Grid Table */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2px;
+        }
+
+        .skills-table td {
+            padding: 1.5px 0;
+            vertical-align: top;
+            font-size: 8.4pt;
+        }
+
+        .skill-category {
+            font-weight: 700;
+            color: #2c5282;
+            width: 21%;
+            padding-right: 5px;
+        }
+
+        .skill-list {
+            color: #2d3748;
+            width: 79%;
+        }
+
+        /* Experience Items */
+        .exp-item {
+            margin-bottom: 6px;
+        }
+
+        .page-break-start {
+            page-break-before: always;
+            break-before: page;
+        }
+
+        .exp-header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1px;
+        }
+
+        .exp-header-table td {
+            padding: 0;
+            vertical-align: bottom;
+        }
+
+        .role-title {
+            font-size: 9.2pt;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        .company-name {
+            font-size: 9.0pt;
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+
+        .exp-location-date {
+            text-align: right;
+            font-size: 8.2pt;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .exp-sub-focus {
+            font-size: 8.2pt;
+            font-style: italic;
+            color: #2c5282;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        /* Bullet Lists */
+        ul.bullets {
+            margin: 0;
+            padding-left: 13px;
+        }
+
+        ul.bullets li {
+            margin-bottom: 1.8px;
+            font-size: 8.4pt;
+            text-align: justify;
+        }
+
+        /* Education & Certifications & Awards */
+        .edu-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .edu-table td {
+            padding: 1px 0;
+            vertical-align: top;
+            font-size: 8.4pt;
+        }
+
+        .compact-list {
+            margin: 0;
+            padding-left: 13px;
+        }
+
+        .compact-list li {
+            margin-bottom: 1.5px;
+            font-size: 8.4pt;
+        }
+
+        .highlight-skill,
+        .highlight-metric {
+            font-weight: 700;
+            color: #1a365d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="name">Archit Jain</div>
+        <div class="title">Tech Lead – Distributed Systems & Full Stack Architecture</div>
+        <div class="contact-bar">
+            <div class="contact-item">New Delhi, India</div>
+            <div class="contact-item">+91 9971577261</div>
+            <div class="contact-item"><a href="mailto:archit.abj@gmail.com">archit.abj@gmail.com</a></div>
+            <div class="contact-item"><a
+                    href="https://linkedin.com/in/aj-archit-jain">linkedin.com/in/aj-archit-jain</a></div>
+            <div class="contact-item"><a href="https://architjain.is-a.dev">architjain.is-a.dev</a></div>
+        </div>
+    </div>
+
+    <!-- Profile Summary -->
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <p class="summary-text">
+            Visionary Engineering Lead with <span class="highlight-metric">5+ years</span> of experience architecting,
+            decoupling, and optimizing hyper-scale distributed microservices for premier fintech and automotive
+            marketplace platforms like CarDekho and Rupyy. Technical leader adept at bridging complex systems
+            engineering with business P&L, demonstrated by handling <span class="highlight-metric">INR 100 Crore+</span>
+            revenue verticals and executing fault-tolerant ledger migrations. Driven by an execution-first culture,
+            steering cross-functional pods, evaluating system design trade-offs, and piloting next-generation Agentic AI
+            frameworks to automate mission-critical organizational workflows.
+        </p>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="section">
+        <div class="section-title">Skills & Strengths</div>
+        <table class="skills-table">
+            <tr>
+                <td class="skill-category">Architecture & Design:</td>
+                <td class="skill-list">
+                    <span class="highlight-skill">Distributed Microservices Architecture</span>,
+                    <span class="highlight-skill">High-Scale System Design</span>,
+                    <span class="highlight-skill">Event-Driven Architecture</span>,
+                    Service Oriented Architecture (SOA),
+                    <span class="highlight-skill">Monolith Decoupling</span>,
+                    <span class="highlight-skill">Low-Level Design (LLD)</span>,
+                    <span class="highlight-skill">System Trade-off Analysis</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="skill-category">Languages & Frameworks:</td>
+                <td class="skill-list">
+                    <span class="highlight-skill">TypeScript</span>,
+                    <span class="highlight-skill">JavaScript (ES6+)</span>,
+                    <span class="highlight-skill">Node.js</span>,
+                    <span class="highlight-skill">Express.js</span>,
+                    <span class="highlight-skill">React.js</span>,
+                    <span class="highlight-skill">Java</span>,
+                    HTML5, CSS3
+                </td>
+            </tr>
+            <tr>
+                <td class="skill-category">Database & Caching:</td>
+                <td class="skill-list">
+                    <span class="highlight-skill">MongoDB</span> (Document Modeling),
+                    <span class="highlight-skill">MySQL</span> / <span class="highlight-skill">MS SQL</span> (Relational
+                    Design, Procedures),
+                    <span class="highlight-skill">Redis</span> (Distributed Caching, Redlock)
+                </td>
+            </tr>
+            <tr>
+                <td class="skill-category">Cloud, DevOps & Tools:</td>
+                <td class="skill-list">
+                    <span class="highlight-skill">AWS</span> (<span class="highlight-skill">SQS</span>, <span
+                        class="highlight-skill">ECS</span>, <span class="highlight-skill">EC2</span>, <span
+                        class="highlight-skill">S3</span>, <span class="highlight-skill">Lambda</span>),
+                    <span class="highlight-skill">Docker Containerization</span>,
+                    <span class="highlight-skill">CI/CD</span> (Bitbucket Pipelines, Jenkins),
+                    Git/GitHub
+                </td>
+            </tr>
+            <tr>
+                <td class="skill-category">AI Engineering:</td>
+                <td class="skill-list">
+                    <span class="highlight-skill">LLM Orchestration</span>,
+                    <span class="highlight-skill">Agentic Workflows</span> (<span
+                        class="highlight-skill">LangChain</span> / <span class="highlight-skill">CrewAI</span>),
+                    <span class="highlight-skill">Vector Databases</span>,
+                    Context-Embedded System Automation
+                </td>
+            </tr>
+            <tr>
+                <td class="skill-category">Leadership & Governance:</td>
+                <td class="skill-list">
+                    <span class="highlight-skill">Pod Ownership & Mentoring</span> (10+ Engineers),
+                    <span class="highlight-skill">Technical Governance</span>,
+                    Cross-Functional Leadership,
+                    <span class="highlight-skill">Performance Tuning</span>,
+                    Test-Driven Development (TDD),
+                    Agile Methodologies,
+                    System Optimization
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="section">
+        <div class="section-title">Work Experience</div>
+
+        <!-- Tech Lead -->
+        <div class="exp-item">
+            <table class="exp-header-table">
+                <tr>
+                    <td><span class="role-title">Tech Lead</span> — <span class="company-name">CarDekho Group
+                            (Rupyy)</span></td>
+                    <td class="exp-location-date">Gurugram, India | 04/2026 – Present</td>
+                </tr>
+            </table>
+            <div class="exp-sub-focus">Projects: Digipartner, Digiagent & StrategyBox (B2B & B2C FinTech Ecosystems)
+            </div>
+            <ul class="bullets">
+                <li><span class="highlight-skill">Engineering Leadership & Delivery:</span> Spearhead a <span
+                        class="highlight-skill">cross-functional engineering pod of <span
+                            class="highlight-metric">10+</span> developers and QA engineers</span> driving continuous
+                    platform delivery for core high-traffic fintech systems (<span
+                        class="highlight-skill">Digipartner</span>, <span class="highlight-skill">Digiagent</span>, and
+                    <span class="highlight-skill">StrategyBox</span>).
+                </li>
+                <li><span class="highlight-skill">Technical Vision & Governance:</span> Formulated <span
+                        class="highlight-skill">architectural layouts</span>, evaluated high-concurrency design
+                    trade-offs, and introduced <span class="highlight-skill">microservices code quality patterns</span>
+                    across core applications, reducing production escalations by <span
+                        class="highlight-metric">25%</span> and boosting system resilience.</li>
+                <li><span class="highlight-skill">AI Innovation & Workflow Automation:</span> Spearheading the
+                    architecture of a centralized payment portal, utilizing <span class="highlight-skill">OpenAI
+                        GPT</span> and <span class="highlight-skill">Claude APIs</span> to automate complex loan cash
+                    flow reconciliations and dynamically calculate partner revenue disbursements, eliminating manual
+                    data tracking.</li>
+                <li><span class="highlight-skill">Infrastructure & Cost Optimization:</span> Spearheaded an <span
+                        class="highlight-skill">infrastructure rightsizing initiative</span> across <span
+                        class="highlight-skill">AWS ECS clusters</span>, <span class="highlight-skill">AWS
+                        Lambdas</span>, and <span class="highlight-skill">Redis nodes</span>, slashing monthly cloud
+                    expenditure by <span class="highlight-metric">18%</span> without compromising system availability or
+                    throughput.</li>
+                <li><span class="highlight-skill">Operational Excellence:</span> Accelerated development lifecycles by
+                    structuring <span class="highlight-skill">code review standards</span> and <span
+                        class="highlight-skill">agile sprint mechanics</span>, driving a <span
+                        class="highlight-metric">15%</span> efficiency gain and cutting time-to-market by <span
+                        class="highlight-metric">20%</span>.</li>
+                <li><span class="highlight-skill">System Architecture & LLD:</span> Lead design reviews for <span
+                        class="highlight-skill">high-concurrency microservices</span>, ensuring performant event-loops,
+                    data encryption, and robust <span class="highlight-skill">third-party B2B banking API
+                        integrations</span>.</li>
+                <li><span class="highlight-skill">Team Mentoring:</span> Guide mid-level and junior engineers on <span
+                        class="highlight-skill">distributed systems design patterns</span>, <span
+                        class="highlight-skill">clean code methodologies</span>, <span class="highlight-skill">low-level
+                        design (LLD)</span>, and <span class="highlight-skill">query performance optimization</span>.
+                </li>
+            </ul>
+        </div>
+
+        <!-- SDE III -->
+        <div class="exp-item">
+            <table class="exp-header-table">
+                <tr>
+                    <td><span class="role-title">Software Development Engineer III</span> — <span
+                            class="company-name">CarDekho Group (Rupyy)</span></td>
+                    <td class="exp-location-date">Gurugram, India | 10/2024 – 03/2026</td>
+                </tr>
+            </table>
+            <div class="exp-sub-focus">Projects: NBFC/Marketplace UJ & StrategyBox (Microservices Transformation &
+                System Reliability)</div>
+            <ul class="bullets">
+                <li><span class="highlight-skill">Monolith Decoupling:</span> Architected the migration of a
+                    high-dependency legacy 'Unified Journey' monolithic platform into modern, clean-bounded <span
+                        class="highlight-skill">isolated microservices</span> for <span
+                        class="highlight-skill">NBFC</span> and <span class="highlight-skill">Marketplace UJ</span>
+                    workflows alongside the <span class="highlight-skill">StrategyBox</span> platform.</li>
+                <li><span class="highlight-skill">Data Migration & Integrity:</span> Successfully led a <span
+                        class="highlight-skill">zero-downtime horizontal data migration</span> of <span
+                        class="highlight-metric">3+ years</span> of encrypted business-critical lead records, preserving
+                    <span class="highlight-metric">100%</span> transactional data integrity.
+                </li>
+                <li><span class="highlight-skill">Deep-Dive Performance Tuning:</span> Resolved critical <span
+                        class="highlight-skill">memory leaks</span> and <span class="highlight-skill">unoptimized
+                        database queries</span> across system boundaries, reducing aggregate server overhead and
+                    improving API response times by <span class="highlight-metric">40-50%</span>.</li>
+                <li><span class="highlight-skill">Observability Engineering:</span> Institutionalized <span
+                        class="highlight-skill">proactive debugging</span>, <span class="highlight-skill">application
+                        metrics tracing</span>, and <span class="highlight-skill">real-time alerting strategies</span>
+                    that systematically cut production downtime incidents by <span class="highlight-metric">30%</span>.
+                </li>
+            </ul>
+        </div>
+
+        <!-- SDE II -->
+        <div class="exp-item">
+            <table class="exp-header-table">
+                <tr>
+                    <td><span class="role-title">Software Development Engineer II</span> — <span
+                            class="company-name">CarDekho Group (Rupyy)</span></td>
+                    <td class="exp-location-date">Gurugram, India | 06/2023 – 09/2024</td>
+                </tr>
+            </table>
+            <div class="exp-sub-focus">Projects: Unified Journey (High-Volume Transactions & Scaling)</div>
+            <ul class="bullets">
+                <li><span class="highlight-skill">Revenue & Business Growth:</span> Scaled and launched net-new credit
+                    financing verticals (new cars, two-wheelers, refinancing) under the <span
+                        class="highlight-skill">Unified Journey</span> ecosystem, processing high-volume transactions
+                    that generated over <span class="highlight-skill"><span class="highlight-metric">INR 100
+                            Crore+</span></span> in new business revenue.</li>
+                <li><span class="highlight-skill">Asynchronous Infrastructure:</span> Engineered resilient, asynchronous
+                    onboarding and loan disbursement sub-systems leveraging <span class="highlight-skill">AWS SQS event
+                        patterns</span> to guarantee high availability and fault isolation.</li>
+                <li><span class="highlight-skill">Automation & DevOps:</span> Integrated <span
+                        class="highlight-skill">automated continuous testing profiles</span> via <span
+                        class="highlight-skill">Bitbucket Pipelines</span> and <span
+                        class="highlight-skill">Docker</span>, streamlining code validation cycles and upgrading overall
+                    platform deployment frequency.</li>
+            </ul>
+        </div>
+
+        <!-- SDE I (Page 2 Start) -->
+        <div class="exp-item page-break-start">
+            <table class="exp-header-table">
+                <tr>
+                    <td><span class="role-title">Software Development Engineer I</span> — <span
+                            class="company-name">CarDekho Group (Rupyy)</span></td>
+                    <td class="exp-location-date">Gurugram, India | 11/2022 – 05/2023</td>
+                </tr>
+            </table>
+            <div class="exp-sub-focus">Projects: Unified Journey (Core User Flows & Shared Components)</div>
+            <ul class="bullets">
+                <li><span class="highlight-skill">Core Journey Engineering:</span> Programmed data-driven customer
+                    onboarding and automated payout workflows for the <span class="highlight-skill">Unified
+                        Journey</span> platform, directly optimizing customer data conversion metrics.</li>
+                <li><span class="highlight-skill">UI Standardization:</span> Engineered and published shared frontend
+                    <span class="highlight-skill">React.js component libraries</span>, standardizing internal design
+                    patterns and decreasing downstream UI development efforts by <span
+                        class="highlight-metric">25%</span>.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Software Developer -->
+        <div class="exp-item">
+            <table class="exp-header-table">
+                <tr>
+                    <td><span class="role-title">Software Developer</span> — <span class="company-name">India Today
+                            Group (Aaj Tak / Lallantop)</span></td>
+                    <td class="exp-location-date">Noida, India | 12/2021 – 11/2022</td>
+                </tr>
+            </table>
+            <div class="exp-sub-focus">Projects: Lallantop & Tak-CMS (Hyper-Scale Streaming & Media Platforms)</div>
+            <ul class="bullets">
+                <li><span class="highlight-skill">Hyper-Scale Ingestion:</span> Architected <span
+                        class="highlight-skill">low-latency backend systems</span> for live Election Day Results
+                    calculation across <span class="highlight-skill">Tak-CMS</span>, managing massive real-time traffic
+                    spikes smoothly across <span class="highlight-metric">6</span> high-traffic YouTube channels for
+                    <span class="highlight-metric">millions of active users</span>.
+                </li>
+                <li><span class="highlight-skill">Distributed Caching:</span> Formulated multi-node <span
+                        class="highlight-skill">Redis caching strategies</span> above core endpoints for the <span
+                        class="highlight-skill">Lallantop</span> platform, accelerating throughput by <span
+                        class="highlight-metric">10x-15x</span>.</li>
+                <li><span class="highlight-skill">Database Modernization:</span> Executed a complex database translation
+                    migrating the proprietary <span class="highlight-skill">Tak-CMS backend</span> from <span
+                        class="highlight-skill">MySQL</span> instances to flexible document schemas on <span
+                        class="highlight-skill">MongoDB</span> to resolve query locking bottlenecks.</li>
+                <li><span class="highlight-skill">Full-Stack CMS Features:</span> Programmed real-time collaborative
+                    features in the <span class="highlight-skill">MERN stack</span> including <span
+                        class="highlight-skill">WebSocket-driven takeover rights</span>, draggable row set rankings, and
+                    an independent Audio Podcast platform boosting audience engagement by <span
+                        class="highlight-metric">30%</span>.</li>
+                <li><span class="highlight-skill">Technical Mentoring:</span> Served as a lead developer on key modules,
+                    guiding fellow engineers on architectural patterns and mentoring freshers in <span
+                        class="highlight-skill">React.js</span> and <span class="highlight-skill">JavaScript</span>
+                    development.</li>
+            </ul>
+        </div>
+
+        <!-- Software Engineer -->
+        <div class="exp-item">
+            <table class="exp-header-table">
+                <tr>
+                    <td><span class="role-title">Software Engineer</span> — <span class="company-name">Newgen Software
+                            Technologies Ltd.</span></td>
+                    <td class="exp-location-date">Noida, India | 03/2021 – 12/2021</td>
+                </tr>
+            </table>
+            <div class="exp-sub-focus">Projects: Wilson Bank US based project (Enterprise Banking Architecture)</div>
+            <ul class="bullets">
+                <li><span class="highlight-skill">Enterprise Workflows:</span> Designed robust billing management
+                    frameworks and secure transaction document workflows for the <span class="highlight-skill">Wilson
+                        Bank US based project</span> using <span class="highlight-skill">Java</span>, <span
+                        class="highlight-skill">JavaScript</span>, and <span class="highlight-skill">MS SQL</span>.</li>
+                <li><span class="highlight-skill">Greenfield Fee Module:</span> Engineered a custom fee management
+                    sub-system from scratch, ensuring strict enterprise security rules governed all loan account
+                    activities.</li>
+                <li><span class="highlight-skill">Database Engineering & Modernization:</span> Designed high-performance
+                    <span class="highlight-skill">SQL Stored Procedures</span> for safe transactional operations, and
+                    re-architected legacy account opening modules by porting codebases to <span
+                        class="highlight-skill">Angular 9</span>, <span class="highlight-skill">Java</span>, and <span
+                        class="highlight-skill">MS SQL</span>.
+                </li>
+                <li><span class="highlight-skill">Rapid Advancement:</span> Earned a fast-track promotion from Trainee
+                    to full-time Software Engineer within <span class="highlight-metric">4 months</span> based on
+                    exceptional technical execution and system ownership.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Education & Certifications -->
+    <div class="section">
+        <div class="section-title">Education & Certifications</div>
+        <table class="edu-table">
+            <tr>
+                <td style="font-weight: 700; color: #1a365d;">Bachelor of Technology (B.Tech.) in Computer Science
+                    Engineering</td>
+                <td style="text-align: right; font-weight: 600; color: #4a5568;">Aug 2017 – Jun 2021</td>
+            </tr>
+            <tr>
+                <td style="color: #2b6cb0; font-weight: 600;">Guru Gobind Singh Indraprastha University, New Delhi</td>
+                <td style="text-align: right; color: #2d3748; font-weight: 600;">CGPA: <span
+                        class="highlight-metric">8.98</span></td>
+            </tr>
+        </table>
+        <div style="margin-top: 3px; font-size: 8.4pt;">
+            <strong>Certifications:</strong> Data Structures in JAVA – Coding Ninjas
+        </div>
+    </div>
+
+    <!-- Awards & Recognition -->
+    <div class="section">
+        <div class="section-title">Awards & Achievements</div>
+        <ul class="compact-list">
+            <li><strong>Corporate Recognition:</strong> Aspire 3.0 Achiever – CarDekho Group (Rupyy) (Aug 2026)</li>
+            <li><strong>Innovation Awards:</strong> <span class="highlight-metric">1st Runner Up</span>, InnovateX
+                Hackathon – CarDekho Group (Rupyy) (Apr 2025)</li>
+            <li><strong>Corporate Recognition:</strong> Extra Miles Excellence Recognition – CarDekho Group (Rupyy) (May
+                2023)
+            </li>
+            <li><strong>Academic Milestones:</strong> Best Intern Award – Internity Foundation (Jul 2020)</li>
+        </ul>
+    </div>
+
+    <!-- Internships & Projects -->
+    <div class="section">
+        <div class="section-title">Internships & Selected Projects</div>
+        <ul class="compact-list">
+            <li><strong>Speech-to-Text Analytics (Final Year Project):</strong> Programmed a web portal translating
+                real-time streaming audio records into structured diagnostic textual pipelines.</li>
+            <li><strong>ReactJS Intern | Internity Foundation (05/2020 – 06/2020):</strong> Optimized dynamic React
+                component rendering metrics and layout structures.</li>
+            <li><strong>Android Frontend Developer Intern | BSES (07/2019 – 07/2019):</strong> Spearheaded UI/UX
+                overhauls for dual Android mobile applications.</li>
+            <li><strong>Web Development Intern | ABB India Ltd. (01/2019 – 03/2019):</strong> Engineered core web system
+                functionalities and intuitive UI integrations.</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
